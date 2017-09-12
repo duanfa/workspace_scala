@@ -16,26 +16,32 @@ resolvers += "Typesafe Repo" at "http://repo.typesafe.com/typesafe/releases/"
 
 libraryDependencies ++= {
 
-  val sparkVersion = "2.0.1"
+  val sparkVersion = "2.1.0"
   val hadoopVersion = "2.4.0"
+  val hbaseVersion = "1.2.4"
+  
   Seq(
-    "org.apache.spark" %% "spark-core" % sparkVersion ,
-    "org.apache.spark" %% "spark-sql" % sparkVersion ,
-    "org.apache.spark" %% "spark-mllib" % sparkVersion ,
-    //"org.apache.spark" %% "spark-streaming" % sparkVersion ,
-   // "org.apache.spark" % "spark-streaming-kafka_2.10" % sparkVersion,
-    // "org.scala-lang" % "scala-compiler" % "2.10.6" ,
-    //"org.scala-lang" % "scala-reflect" % "2.10.6" ,
-    "org.apache.spark" %% "spark-graphx" % sparkVersion ,
-    "org.apache.spark" %% "spark-catalyst" % sparkVersion,
-    "org.apache.hadoop" % "hadoop-client" % hadoopVersion
+    "org.apache.spark" % "spark-core_2.11" % sparkVersion ,
+    "org.apache.spark" % "spark-sql_2.11" % sparkVersion ,
+    "org.apache.spark" % "spark-mllib_2.11" % sparkVersion ,
+    "org.apache.spark" % "spark-streaming_2.11" % sparkVersion ,
+    "org.apache.spark" % "spark-streaming-kafka_2.11" % "1.6.1",
+    "org.apache.spark" % "spark-streaming-flume_2.11" % sparkVersion,
+    "org.apache.spark" % "spark-streaming-flume-sink_2.11" % sparkVersion,
+    "org.apache.spark" % "spark-graphx_2.11" % sparkVersion,
+    "org.apache.spark" % "spark-catalyst_2.11" % sparkVersion,
+    "org.apache.hadoop" % "hadoop-client" % hadoopVersion,
 
-    /* "org.apache.phoenix" % "phoenix-spark" % "4.6.0-HBase-0.98",
-    "org.apache.phoenix" % "phoenix-core" % "4.6.0-HBase-0.98",
-    "org.apache.hbase" % "hbase-client" % "0.98.12-hadoop2",
-    "org.apache.hbase" % "hbase-common" % "0.98.12-hadoop2",
-    "org.apache.hbase" % "hbase-server" % "0.98.12-hadoop2",
-   "org.apache.hbase" % "hbase-protocol" % "0.98.12-hadoop2"*/
+    //"org.apache.phoenix" % "phoenix-spark" % hbaseVersion,
+    //"org.apache.phoenix" % "phoenix-core" % hbaseVersion,
+    "org.apache.hbase" % "hbase-client" % hbaseVersion,
+    "org.apache.hbase" % "hbase-common" % hbaseVersion,
+    "org.apache.hbase" % "hbase-server" % hbaseVersion,
+    "org.apache.htrace" % "htrace-core" % "3.1.0-incubating",
+    "org.apache.hbase" % "hbase-protocol" % hbaseVersion,
+    "org.mongodb" % "mongo-java-driver" % "3.3.0",
+    "com.stratio.datasource" % "spark-mongodb_2.11" % "0.11.2",
+    "com.github.scopt" % "scopt_2.11" % "3.2.0"
   )
     .map(_ % "provided")
     .map(_.excludeAll(ExclusionRule(organization = "org.mortbay.jetty")))
@@ -43,6 +49,7 @@ libraryDependencies ++= {
 
 libraryDependencies ++={
   Seq(
+     //"com.typesafe.play" %% "play-json" % "2.2.1",
     "redis.clients" % "jedis" % "2.8.1",
     "com.huaban"%"jieba-analysis"%"1.0.2",
     "com.github.nscala-time" %% "nscala-time" % "2.2.0",
@@ -54,8 +61,7 @@ libraryDependencies ++={
     "org.jblas" % "jblas" % "1.2.4",
     
     //"net.sf.ezmorph" % "ezmorph" % "1.0.6",
-    "net.sf.json-lib" % "json-lib" % "1.0" classifier "jdk15",
-    "org.scalaj" % "scalaj-http_2.11" % "2.3.0"
+    "net.sf.json-lib" % "json-lib" % "1.0" classifier "jdk15"
   ).map(
     _.excludeAll(ExclusionRule(organization = "org.mortbay.jetty"))
   )
