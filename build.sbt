@@ -71,4 +71,4 @@ libraryDependencies ++={
 
 
 resolvers += Resolver.sonatypeRepo("public")
-jarName in assembly := "UFSRepice.jar"
+jarName in assembly := "st.jar"
