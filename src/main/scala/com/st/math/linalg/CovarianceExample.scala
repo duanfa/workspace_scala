@@ -1,4 +1,4 @@
-package com.st.math
+package com.st.math.linalg
 
 import org.apache.spark.mllib.linalg.distributed.RowMatrix
 import org.apache.spark.mllib.linalg.{ Matrix, Vector, Vectors }
@@ -6,6 +6,11 @@ import org.apache.spark.mllib.stat.MultivariateStatisticalSummary
 import org.apache.spark.sql.{ Row, SQLContext }
 import org.apache.spark.{ SparkContext, SparkConf }
 import org.apache.spark.sql.SparkSession
+import scala.reflect.runtime.universe
+
+/*
+ * 均值，方差，协方差
+ */
 
 object CovarianceExample {
   def main(args: Array[String]) {
@@ -35,7 +40,7 @@ object CovarianceExample {
       Vectors.dense(-0.71, -1.01))
 
     // Array[Vector]转换成DataFrame
-      val df = sqlContext.createDataFrame(data.map(Tuple1.apply)).toDF("features")
+      val df = sqlContext.createDataFrame(data2.map(Tuple1.apply)).toDF("features")
 
     // DataFrame转换成RDD
     //    implicit val aEncoder = org.apache.spark.sql.Encoders.kryo[Vector]
@@ -45,21 +50,22 @@ object CovarianceExample {
 
     // RDD转换成RowMatrix
     val mat: RowMatrix = new RowMatrix(rddData)
-
     // 统计
     val stasticSummary: MultivariateStatisticalSummary = mat.computeColumnSummaryStatistics()
 
     // 均值
-    println(stasticSummary.mean)
+    println("avg:"+stasticSummary.mean)
     // 结果：3.5,4.5,4.0
 
     // 方差
-    println(stasticSummary.variance)
+    println("variance:"+stasticSummary.variance)
     // 结果：1.6666666666666667,3.6666666666666665,6.666666666666667
 
     // 协方差
     val covariance: Matrix = mat.computeCovariance()
     println(covariance)
+    
+    println(mat)
     // 结果：
     //  cov(dim1,dim1) cov(dim1,dim2) cov(dim1,dim3)
     //  cov(dim2,dim1) cov(dim2,dim2) cov(dim2,dim3)
