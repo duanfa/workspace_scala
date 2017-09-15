@@ -16,11 +16,10 @@
  */
 
 // scalastyle:off println
-package com.st.classification.mllib
+package com.st.classification.SVM
 
 import org.apache.spark.{ SparkConf, SparkContext }
-// $example on$
-import org.apache.spark.mllib.classification.{ SVMModel, SVMWithSGD }
+import org.apache.spark.mllib.classification.SVMWithSGD
 import org.apache.spark.mllib.evaluation.BinaryClassificationMetrics
 import org.apache.spark.mllib.util.MLUtils
 // $example off$
