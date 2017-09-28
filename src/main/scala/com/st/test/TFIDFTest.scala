@@ -1,4 +1,4 @@
-package com.ufs.cluster.localTest
+package com.st.test
 
 
 import org.apache.spark.ml.feature.{HashingTF, IDF, Tokenizer}

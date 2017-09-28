@@ -1,4 +1,4 @@
-package com.ufs.cluster.localTest
+package com.st.test
 
 import scala.reflect.runtime.universe
 import org.apache.spark.SparkConf
