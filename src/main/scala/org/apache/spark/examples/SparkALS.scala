@@ -54,7 +54,7 @@ object SparkALS {
       val diff = diffs.getEntry(i, j)
       sumSqs += diff * diff
     }
-    math.sqrt(sumSqs / (M.toDouble * U.toDouble))
+    Math.sqrt(sumSqs / (M.toDouble * U.toDouble))
   }
 
   def update(i: Int, m: RealVector, us: Array[RealVector], R: RealMatrix) : RealVector = {
@@ -143,10 +143,10 @@ object SparkALS {
   }
 
   private def randomVector(n: Int): RealVector =
-    new ArrayRealVector(Array.fill(n)(math.random))
+    new ArrayRealVector(Array.fill(n)(Math.random))
 
   private def randomMatrix(rows: Int, cols: Int): RealMatrix =
-    new Array2DRowRealMatrix(Array.fill(rows, cols)(math.random))
+    new Array2DRowRealMatrix(Array.fill(rows, cols)(Math.random))
 
 }
 // scalastyle:on println

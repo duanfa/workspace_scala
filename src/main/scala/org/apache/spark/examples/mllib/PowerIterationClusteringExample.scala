@@ -116,8 +116,8 @@ object PowerIterationClusteringExample {
 
   def generateCircle(radius: Double, n: Int): Seq[(Double, Double)] = {
     Seq.tabulate(n) { i =>
-      val theta = 2.0 * math.Pi * i / n
-      (radius * math.cos(theta), radius * math.sin(theta))
+      val theta = 2.0 * Math.PI * i / n
+      (radius * Math.cos(theta), radius * Math.sin(theta))
     }
   }
 
@@ -144,7 +144,7 @@ object PowerIterationClusteringExample {
    */
   def gaussianSimilarity(p1: (Double, Double), p2: (Double, Double)): Double = {
     val ssquares = (p1._1 - p2._1) * (p1._1 - p2._1) + (p1._2 - p2._2) * (p1._2 - p2._2)
-    math.exp(-ssquares / 2.0)
+    Math.exp(-ssquares / 2.0)
   }
 }
 // scalastyle:on println

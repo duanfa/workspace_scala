@@ -178,14 +178,14 @@ object MovieLensALS {
     : Double = {
 
     def mapPredictedRating(r: Double): Double = {
-      if (implicitPrefs) math.max(math.min(r, 1.0), 0.0) else r
+      if (implicitPrefs) Math.max(Math.min(r, 1.0), 0.0) else r
     }
 
     val predictions: RDD[Rating] = model.predict(data.map(x => (x.user, x.product)))
     val predictionsAndRatings = predictions.map{ x =>
       ((x.user, x.product), mapPredictedRating(x.rating))
     }.join(data.map(x => ((x.user, x.product), x.rating))).values
-    math.sqrt(predictionsAndRatings.map(x => (x._1 - x._2) * (x._1 - x._2)).mean())
+    Math.sqrt(predictionsAndRatings.map(x => (x._1 - x._2) * (x._1 - x._2)).mean())
   }
 }
 // scalastyle:on println

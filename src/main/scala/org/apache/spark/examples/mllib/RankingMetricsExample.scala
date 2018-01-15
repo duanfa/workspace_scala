@@ -56,7 +56,7 @@ object RankingMetricsExample {
 
     // Define a function to scale ratings from 0 to 1
     def scaledRating(r: Rating): Rating = {
-      val scaledRating = math.max(math.min(r.rating, 1.0), 0.0)
+      val scaledRating = Math.max(Math.min(r.rating, 1.0), 0.0)
       Rating(r.user, r.product, scaledRating)
     }
 

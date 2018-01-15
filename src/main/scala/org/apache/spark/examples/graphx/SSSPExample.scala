@@ -50,7 +50,7 @@ object SSSPExample {
     val initialGraph = graph.mapVertices((id, _) =>
         if (id == sourceId) 0.0 else Double.PositiveInfinity)
     val sssp = initialGraph.pregel(Double.PositiveInfinity)(
-      (id, dist, newDist) => math.min(dist, newDist), // Vertex Program
+      (id, dist, newDist) => Math.min(dist, newDist), // Vertex Program
       triplet => {  // Send Message
         if (triplet.srcAttr + triplet.attr < triplet.dstAttr) {
           Iterator((triplet.dstId, triplet.srcAttr + triplet.attr))
@@ -58,7 +58,7 @@ object SSSPExample {
           Iterator.empty
         }
       },
-      (a, b) => math.min(a, b) // Merge Message
+      (a, b) => Math.min(a, b) // Merge Message
     )
     println(sssp.vertices.collect.mkString("\n"))
     // $example off$

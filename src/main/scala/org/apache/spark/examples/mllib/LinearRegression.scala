@@ -128,7 +128,7 @@ object LinearRegression {
       val err = p - l
       err * err
     }.reduce(_ + _)
-    val rmse = math.sqrt(loss / numTest)
+    val rmse = Math.sqrt(loss / numTest)
 
     println(s"Test RMSE = $rmse.")
 

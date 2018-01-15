@@ -95,9 +95,9 @@ object CosineSimilarity {
     val approxEntries = approx.entries.map { case MatrixEntry(i, j, v) => ((i, j), v) }
     val MAE = exactEntries.leftOuterJoin(approxEntries).values.map {
       case (u, Some(v)) =>
-        math.abs(u - v)
+        Math.abs(u - v)
       case (u, None) =>
-        math.abs(u)
+        Math.abs(u)
     }.mean()
 
     println(s"Average absolute error in estimate is: $MAE")
